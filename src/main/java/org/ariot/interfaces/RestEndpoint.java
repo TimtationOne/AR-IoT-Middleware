@@ -40,9 +40,10 @@ public class RestEndpoint {
 	Mapper map;
 	@Autowired
 	FileDBAccess fdba;
-	
+	/*
 	@Value("${upload.folder.path}") 
 	private String saveDirectory = "/opt/ariotmiddleware/uploads/";
+	*/
 
 	@RequestMapping(value = { "/sensorvalues/{deviceId}" }, method = {
 			org.springframework.web.bind.annotation.RequestMethod.GET }, produces = "application/json")
@@ -136,7 +137,7 @@ public class RestEndpoint {
 		return "DeviceAddForm";
 	} */
 	
-	
+	/*
 	@RequestMapping(value = "/files/{filename:.+}", method = RequestMethod.GET)
     public  @ResponseBody ResponseEntity<Resource> downloadFile(@PathVariable String filename) throws MalformedURLException {
         Resource file = new UrlResource("file:"+saveDirectory+filename);
@@ -145,7 +146,7 @@ public class RestEndpoint {
                     "attachment; filename=\"" + file.getFilename() + "\"").body(file);
         }
         return null;//ResponseEntity.notFound().header("Error=File Loading Error") ;
-    }
+    }*/
 
 
 }
