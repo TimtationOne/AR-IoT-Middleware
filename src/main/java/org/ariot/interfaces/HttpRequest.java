@@ -18,38 +18,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 @Service
 public class HttpRequest {
-	public String send(String restUrl, String contentType, String method, String body) throws IOException {
-		String response="";
-			URL url = new URL(restUrl);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			conn.setRequestMethod(method);// "POST");
-			conn.setRequestProperty("Content-Type", contentType);// "application/vnd.onem2m-res+json;
-
-			conn.setReadTimeout(0);
-
-
-			OutputStream os = conn.getOutputStream();
-			
-			os.write(body.getBytes());
-			os.flush();
-			
-			if (conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED && conn.getResponseCode() != HttpURLConnection.HTTP_CREATED && conn.getResponseCode() != HttpURLConnection.HTTP_OK ) {
-				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-			}
-
-			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-
-			String output;
-			response = "Output from Server .... \n";
-			while ((output = br.readLine()) != null) {
-				response += output + "\n";
-			}
-
-			conn.disconnect();
-
-		return response;
-	}
 	
 	public String sendHRD(MappingData requestdata ) throws HttpServerErrorException, IOException {
 		String response="";
